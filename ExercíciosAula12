@@ -1,0 +1,38 @@
+1- Lista com nome de todos gafanhotos:
+select nome from gafanhotos where sexo = 'F'
+order by nome;
+
+
+2- Lista com dados de todos que nasceram entre 1/jan/2000 e 31/12/2015:
+select * from gafanhotos where nascimento between '2000-jan-1' and '2015-dez-31'
+order by nome;
+
+
+3- Lista com o nome de todos homens que trabalham como programadores:
+select nome from gafanhotos where sexo = 'M' and profissao =' programadores';
+
+
+4- lista com todos dados de todas mulheres que nasceram no Brasil e que tenha o nome iniciado com a letra J:
+select * from gafanhotos where sexo = 'F' and nacionalidade = 'Brasil' and nome like 'J%'
+order by nome;
+
+
+5- Lista da nacionalidade de todos homens que tem Silva no nome, não nasceram no brasil e pesam menos de 100kg:
+select nome, nacionalidade from gafanhotos where sexo='M' and nome like '%Silva%' and nacionalidade !='Brasil' and peso < '100'
+order by nome;
+
+
+6- Maior altura entre os gafanhotos homens que moram no brasil:
+select max(altura) from gafanhotos where sexo = 'M' and nacionalidade ='Brasil';
+
+
+7- Média de peso dos gafanhotos cadastrados:
+select avg(peso) from gafanhotos;
+
+
+8- Menor peso entre as mulheres que nasceram fora do Brasil entre 01.01.1990 e 31.12.2000:
+select min(peso) from gafanhotos where sexo='F' and nacionalidade !='Brasil' and nascimento between '1991-01-01' and '2000-12-31';
+
+
+9- Quantoas mulheres tem mais de 1.90 de altura:
+select count(nome) from gafanhotos where altura >'1.90' and sexo='F';
