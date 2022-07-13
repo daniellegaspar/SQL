@@ -1,2 +1,1 @@
-# MySQL
-Exercícios e Anotações Curso de MySQL curso em vídeo
+# Relatórios de Consultas SQL
