@@ -1,0 +1,32 @@
+#Relatórios Parte 1:
+
+/*1. Obtenha o nome e o sobrenome dos primeiros 5 atores disponíveis, 
+use Alias para exibir os nomes das colunas com a primeira letra maiúscula.*/
+
+select first_name as Nome, last_name as Sobrenome from actor
+limit 5;
+
+
+/*2. Obtenha uma lista que inclua nome, sobrenome e e-mail dos clientes
+inativos. Use Alias para exibir os nomes das colunas com a primeira letra
+maiúscula.*/
+
+select nome as Nome, sobrenome as Sobrenome, email as Email from cliente
+where ativo = 0;
+
+
+/*3. Obtenha uma lista de filmes, incluindo título, ano e descrição dos filmes que
+têm uma duracao_locacao maior que cinco. Classificar por duracao_locacao
+descendente e use Alias para exibir os nomes das colunas com a primeira
+letra maiúscula.*/
+
+select title as Título, release_year as Ano, description as Descrição from film
+where rental_duration > 5
+order by rental_duration desc;
+
+
+/*4. Obtenha uma lista de aluguéis que foram feitos durante o mês de Maio de
+2005. Inclua todas as colunas disponíveis no resultado.*/
+
+select locacao_id, data_locacao, inventario_id, cliente_id, data_retorno, funcionario_id, ultima_atualizacao from locacao
+where date(data_locacao) between  '2005-05-01' and '2005-05-31';
