@@ -1,1 +1,81 @@
-https://console.cloud.google.com/bigquery?sq=778665478405:c1c616d5ab0643d69eefa0acafd7bfee
+# EXERCÍCIOS
+
+#1) Quero como resultado uma tabela que contenha o id, país e estado de todos os nossos clientes.
+select 
+  id, 
+  country,
+  state
+from `agile-splicer-356920.e_commerce.customers`;
+
+
+#2) Selecione os preços distintos de nossos produtos, mas ordenados de forma decrescente, utilizando o DISTINCT e ORDER BY.
+select distinct
+  price
+from `agile-splicer-356920.e_commerce.products`
+order by 1 desc;
+
+
+#3) Retorne a data (naquele formato ANO-MÊS-DIA) de criação dos primeiros 5 registros da tabela customers.
+select 
+  date(created_at) as dia
+from `agile-splicer-356920.e_commerce.customers`
+limit 5;
+
+
+#4) O time de marketing deseja fazer uma campanha em um estado específico. Para isso, eles te pedem os e-mails de todos os #clientes que moram no Piauí.
+select
+  id,
+  email
+from `agile-splicer-356920.e_commerce.customers`
+where state = 'Piauí';
+
+
+#5) Vá até a tabela items e retorne o campo ‘total_price’ de forma distinta, mas utilizando o GROUP BY.
+select distinct
+  total_price 
+from `agile-splicer-356920.e_commerce.items`
+group by 1;
+
+
+#6) Selecione todos os pedidos em que o status é cancelado OU entrega_pendente. Retorne também o mesmo resultado, mas utilizando o operador IN.
+select 
+  *
+from `agile-splicer-356920.e_commerce.orders`
+where status = 'cancelado' or status = 'entrega_pendente';
+
+
+select 
+  *
+from `agile-splicer-356920.e_commerce.orders`
+where status in ('cancelado', 'entrega_pendente');
+
+
+#7) Retorne todos os registros em que o campo ‘additionals’ é nulo na tabela customers.
+select 
+  *
+from `agile-splicer-356920.e_commerce.customers`
+where additionals is null;
+
+
+#8) Utilize o join para trazer a informação de status do pedido juntamente das informações (colunas) da tabela de itens.
+select 
+  i.*,
+  status
+from `agile-splicer-356920.e_commerce.orders` as o
+join `agile-splicer-356920.e_commerce.items`as i on i.order_id = o.id;
+
+
+#9) Na tabela de pedidos, além das colunas existentes, quero também informações de nome do cliente e seu telefone.
+select 
+ o.*,
+ c.first_name,
+ c.cell_phone	
+from `agile-splicer-356920.e_commerce.orders` as o
+join `agile-splicer-356920.e_commerce.customers` as c on o.customer_id = c.id;
+
+
+#10) DESAFIO: Pesquise sobre o comando like e retorne os nomes dos produtos que tenham somente 4 caracteres
+select 
+  name
+from `agile-splicer-356920.e_commerce.products`
+where name like '____'; # o caractere _ indica o número de caracteres envolvidos na pesquisa.
